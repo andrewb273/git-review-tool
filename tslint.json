@@ -1,0 +1,22 @@
+{
+	"defaultSeverity": "warning",
+	"extends": ["tslint-eslint-rules", "tslint-config-airbnb", "tslint-react"],
+	"jsRules": {},
+	"rules": {
+		"ter-indent": [
+			true,
+			"tab",
+			{
+				"SwitchCase": 1
+			}
+		],
+		"curly": [false],
+		"trailing-comma": false,
+		"jsx-boolean-value": false,
+		"jsx-no-multiline-js": false,
+		"ter-arrow-parens": [true, "as-needed"],
+		"semicolon": [true, "always", "ignore-bound-class-methods"],
+		"max-line-length": false
+	},
+	"rulesDirectory": []
+}

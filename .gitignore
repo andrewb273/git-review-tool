@@ -1,0 +1,10 @@
+# npm
+node_modules
+package-lock.json
+
+# ide
+*.code-workspace
+.vscode
+
+# project
+dist
