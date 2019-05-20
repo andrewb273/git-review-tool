@@ -4,9 +4,12 @@
   "description": "A git review tool focused on single branches with multiple authors",
   "main": "dist/index.js",
   "dependencies": {
-    "nodegit": "^0.24.3"
+    "nodegit": "^0.24.3",
+    "prompt": "^1.0.0",
+    "simple-git": "^1.113.0"
   },
   "devDependencies": {
+    "@types/node": "^12.0.2",
     "ts-node": "^8.1.0",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5"

@@ -1,9 +1,11 @@
 {
 	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": { "*": ["types/*"] },
 		"declaration": true,
 		"jsx": "react",
 		"lib": ["es2015", "es2017", "dom"],
-		"module": "es6",
+		"module": "commonjs",
 		"moduleResolution": "node",
 		"noImplicitAny": true,
 		"outDir": "./dist/",
