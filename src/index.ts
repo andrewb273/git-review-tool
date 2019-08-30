@@ -12,10 +12,57 @@ const commits: string[] = [];
 let foundStart = false;
 let skip = 0;
 
-git
-	.diff([`${originalHash}~`, originalHash])
-	.then(e => console.log(e));
+const getDiffOfCommit = (hash: string) =>
+  git.diff([`${hash}~`, hash]).then(e => console.log(e));
 
+const logFile = async (from: string, file: string) => {
+  const value = await git.log({
+    file,
+    from,
+    to: 'HEAD'
+  });
+  return value.all;
+};
+
+interface DiffRange {
+  from: string;
+  fromDate: string;
+  to?: string;
+  toDate?: string;
+}
+
+const logFileForAuthor = async (
+  from: string,
+  file: string,
+  authorEmail: string
+) => {
+  const commits = await logFile(from, file);
+  const diffRanges: DiffRange[] = [];
+  let currentDiffRange: DiffRange;
+
+  for (let i = 0; i < commits.length; i++) {
+    const commit = commits[i];
+    if (commit.author_email === authorEmail) {
+      currentDiffRange = currentDiffRange
+        ? {
+            ...currentDiffRange,
+            to: commit.hash,
+            toDate: commit.date
+          }
+        : {
+            from: commit.hash,
+            fromDate: commit.date
+          };
+    } else {
+      if (currentDiffRange) {
+        diffRanges.push(currentDiffRange);
+        currentDiffRange = null;
+      }
+    }
+  }
+};
+
+logFile(originalHash, 'src/index.ts');
 
 // git.log({
 // 	from: originalHash,
